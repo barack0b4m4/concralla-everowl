@@ -1,6 +1,7 @@
 <meta>
     <oop>true</oop>
     <script src="players.lua" type="server"/>
+    <script src="chat_c.lua" type="client"/>
     <script src="extrahp_server.lua" type="server"/>
     <script src="extrahp_client.lua" type="client"/>
     <export function="getElementExtraHealth" type="client" />
