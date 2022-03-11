@@ -1,0 +1,21 @@
+<meta>
+    <oop>true</oop>
+    <script src="players.lua" type="server"/>
+    <script src="extrahp_server.lua" type="server"/>
+    <script src="extrahp_client.lua" type="client"/>
+    <export function="getElementExtraHealth" type="client" />
+	<export function="getElementExtraHealth" type="server" />
+	<export function="setElementExtraHealth" type="client" />
+	<export function="setElementExtraHealth" type="server" />
+	<export function="isElementWithExtraHealth" type="client" />
+	<export function="isElementWithExtraHealth" type="server" />
+	<export function="setElementInvulnerable" type="client" />	
+	<export function="setElementInvulnerable" type="server" />
+	<export function="isElementInvulnerable" type="client" />
+	<export function="isElementInvulnerable" type="server" />
+    <script src="authentication.lua" type='server'/>
+    <script src="login_c.lua" type="client"/>
+    <export function="getPlayerFromAlias" type="server"/>
+    <script src="register_c.lua" type="client"/>
+    <script src="helpers_c.lua" type="client"/>
+</meta>

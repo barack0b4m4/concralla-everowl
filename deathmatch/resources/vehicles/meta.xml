@@ -1,0 +1,8 @@
+<meta>
+    <oop>true</oop>
+    <script src="utils.lua" type="server"/>
+    <export function="getPositioninFrontOf" type ="server"/>
+    <script src="vehicles.lua" type="server"/>
+    <script src="admin.lua" type="server"/>
+    <script src="vehicles_c.lua" type="client"/>
+</meta>

@@ -1,0 +1,13 @@
+<meta>
+    <script src="money.lua" type='server'/>
+    <export function="giveMoney" type="server"/>
+    <export function="takeMoney" type="server"/>
+    <export function="setMoney" type="server"/>
+    <export function="getMoney" type="server"/>
+    <script src="city_economy.lua" type='server'/>
+    <export function="getCityGDP" type="server"/>
+    <export function="math.randomDiff" type="server"/>
+    <script src="taxes.lua" type="server"/>
+    <script src="payday.lua" type="server"/>
+    <script src="store.lua" type="server"/>
+</meta>
