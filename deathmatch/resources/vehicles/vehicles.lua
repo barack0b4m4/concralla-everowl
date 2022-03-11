@@ -1,3 +1,4 @@
+
 function loadAllVehicles(queryHandle)
     local results = dbPoll(queryHandle, 0)
 
