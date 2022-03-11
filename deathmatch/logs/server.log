@@ -5532,3 +5532,46 @@
 [2022-03-11 12:00:55] Server stopped!
 [2022-03-11 12:00:55] Stopping resources........
 [2022-03-11 12:00:55] Closing SQLite3 database
+==================================================================
+= Multi Theft Auto: San Andreas v1.5.9
+==================================================================
+= Server name      : Default MTA Server
+= Server IP address: auto
+= Server port      : 22003
+= 
+= Log file         : ..rver/server/mods/deathmatch/logs/server.log
+= Maximum players  : 32
+= HTTP port        : 22005
+= Voice Chat       : Disabled
+= Bandwidth saving : Medium
+==================================================================
+[2022-03-11 12:20:37] Resources: 14 loaded, 0 failed
+[2022-03-11 12:20:37] Starting resources........
+[2022-03-11 12:20:37] Authorized serial account protection is enabled for the ACL group(s): `Admin`  See http://mtasa.com/authserial
+[2022-03-11 12:20:37] WARNING: <owner_email_address> not set
+[2022-03-11 12:20:37] Server started and is ready to accept connections!
+[2022-03-11 12:20:37] To stop the server, type 'shutdown' or press Ctrl-C
+[2022-03-11 12:20:37] Type 'help' for a list of commands.
+[2022-03-11 12:20:38] Querying MTA master server... success! (Auto detected IP:162.222.195.6)
+[2022-03-11 12:20:47] Server minclientversion is now 1.5.9-9.21129.0
+[2022-03-11 12:20:47] CONNECT: Obama connected (IP: 100.127.255.249  Serial: 7C3DFBF5341F67135C1E654C45D0B6B3  Version: 1.5.9-9.21135.0)
+[2022-03-11 12:20:48] JOIN: Obama joined the game (IP: 100.127.255.249)
+[2022-03-11 12:20:53] LOGIN: (Everyone, Admin) Obama successfully logged in as 'TestUser' (IP: 100.127.255.249  Serial: 7C3DFBF5341F67135C1E654C45D0B6B3)
+[2022-03-11 12:20:53] INFO: { {
+    character_name = "Goku_Obama"
+  }, {
+    character_name = "Aubrey_Graham"
+  } }
+[2022-03-11 12:21:13] QUIT: Obama left the game [Quit]
+[2022-03-11 12:21:14] CONNECT: Obama connected (IP: 100.127.255.249  Serial: 7C3DFBF5341F67135C1E654C45D0B6B3  Version: 1.5.9-9.21135.0)
+[2022-03-11 12:21:14] JOIN: Obama joined the game (IP: 100.127.255.249)
+[2022-03-11 12:21:21] LOGIN: (Everyone, Admin) Obama successfully logged in as 'TestUser' (IP: 100.127.255.249  Serial: 7C3DFBF5341F67135C1E654C45D0B6B3)
+[2022-03-11 12:21:21] INFO: { {
+    character_name = "Goku_Obama"
+  }, {
+    character_name = "Aubrey_Graham"
+  } }
+[2022-03-11 12:21:24] NICK: Obama is now known as Goku_Obama
+[2022-03-11 12:31:37] Server stopped!
+[2022-03-11 12:31:37] Stopping resources........
+[2022-03-11 12:31:37] Closing SQLite3 database
