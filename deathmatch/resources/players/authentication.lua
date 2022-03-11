@@ -3,6 +3,15 @@ local MINIMUM_PASSWORD_LENGTH = 6
 local SPAWN_X, SPAWN_Y, SPAWN_Z = 1479.91015625, -1708.6591796875, 14.046875
 local SPAWN_INTERIOR, SPAWN_DIMENSION = 0, 0
 
+
+local function makeDB () 
+    dbExec(db, "CREATE TABLE IF NOT EXISTS characters (character_id INTEGER PRIMARY KEY AUTOINCREMENT, account TEXT,character_name TEXT, age INT, gender TEXT, skin INT, fingerprint TEXT, money INT, hunger INT, strength INT, cunning INT, intelligence INT, head_hp INT, torso_hp INT, leftarm_hp INT, rightarm_hp INT, leftleg_hp INT, rightleg_hp INT, lowerbody_hp INT, x INT, y INT, z INT, interior INT, dimension INT, last_seen INT)")
+    dbExec(db, "CREATE TABLE IF NOT EXISTS inventories (character_id TEXT, item_id INT, quantity INT)")
+    dbExec(db, "CREATE TABLE IF NOT EXISTS charskills (character_id TEXT, skill_id INT, level INT)")
+end
+
+addEventHandler("onResourceStart", resourceRoot, makeDB) 
+
 local function isPasswordValid(password)
     return string.len(password) >= MINIMUM_PASSWORD_LENGTH
 end
@@ -32,74 +41,79 @@ addEventHandler('auth:register-attempt', root, function (username, password)
         outputChatBox('Your account has been successfully created, login with /accountLogin', source, 100, 255, 100)
             -- automatically login and spawn the player.
         logIn(player, account, hashedPassword)
-        spawnPlayer(player, SPAWN_X, SPAWN_Y, SPAWN_Z)
-        setElementInterior(player, SPAWN_INTERIOR)
-        setElementDimension(player, SPAWN_DIMENSION)
-        setCameraTarget(player, player)
+        --spawnPlayer(player, SPAWN_X, SPAWN_Y, SPAWN_Z)
+        --setElementInterior(player, SPAWN_INTERIOR)
+        --setElementDimension(player, SPAWN_DIMENSION)
+        --setCameraTarget(player, player)
     
         return triggerClientEvent(player, 'register-menu:close', player)
     end)
 end)
 
 
---login
+
+
+-- save data
+--addEventHandler('onPlayerQuit', root, function()
+  --  local account = getPlayerAccount(source)
+  -- local character_name = getPlayerName(source)
+   -- local skin = getElementModel(source)
+   -- local x, y, z = getElementPosition(source)
+   -- local interior = getElementInterior(source)
+   -- local dimension = getElementDimension(source)
+
+    
+  ---  
+--end)
+
+-- login attempt
 addEvent('auth:login-attempt', true)
 addEventHandler('auth:login-attempt', root, function (username, password)
-
-    local account = getAccount(username)
-    if not account then 
-        return outputChatBox('No such account could be found with that username or password', source, 255, 100, 100)
-    end
-
-    local hashedPassword = getAccountData(account, 'hashed_password')
-    local player = source
-    passwordVerify(password, getAccountData(account, 'hashed_password'), function (isValid)
-        if not isValid then
-            return outputChatBox('No such account could be found with that username or password', player, 255, 100, 100)
-        end
-
-        if logIn(player, account, hashedPassword) then
-            -- get info
-            local x = getAccountData(account, "x") or SPAWN_X
-            local y = getAccountData(account, "y") or SPAWN_Y
-            local z = getAccountData(account, "z") or SPAWN_Z
-            local interior = getAccountData(account, "interior") or SPAWN_INTERIOR
-            local dimension = getAccountData(account, "dimension") or SPAWN_DIMENSION
-            
-            -- spawn player
-            spawnPlayer(player, x, y, z)
-            setElementInterior(player, interior)
-            setElementDimension(player, dimension)
-            setPlayerMoney(player, exports.money:getMoney(account))
-            setElementData (player, "extraHealth:invulnerable", true)
-
-            setCameraTarget(player, player)
-            return triggerClientEvent(player, 'login-menu:close', player)
-        end
-
-        return outputChatBox('An unknown error ocurred while attempting to authenticate.', player, 255, 100, 100)
-
+    
+    -- check hashed password
+        local account = getAccount(username)
+        local player = source
+        local hashedPassword = getAccountData(account,"hashed_password")
+            if (passwordVerify(password,hashedPassword)) then 
+                outputChatBox('Login successful', source, 100, 255, 100)
+                logIn(player, account, hashedPassword)
+                return triggerEvent('character-menu:getcharacters', player)
+            else
+				outputChatBox("Password is incorrect!",source,160,20,20)
+            end
+            --spawnPlayer(player, SPAWN_X, SPAWN_Y, SPAWN_Z)
+            --setElementInterior(player, SPAWN_INTERIOR)
+            --setElementDimension(player, SPAWN_DIMENSION)
+            --setCameraTarget(player, player)
+        
     end)
-end)
+
 
 addEventHandler('onPlayerQuit', root, function()
     local account = getPlayerAccount(source)
 
     if not account then 
-        return
+       return
     end
 
+    local character_name = getPlayerName(source)
+    local skin = getElementModel(source)
+    local money = getPlayerMoney(source)
     local x, y, z = getElementPosition(source)
     local interior = getElementInterior(source)
     local dimension = getElementDimension(source)
-
-    setAccountData(account, "x", x)
-    setAccountData(account, "y", y)
-    setAccountData(account, "z", z)
-    setAccountData(account, "interior", interior)
-    setAccountData(account, "dimension", dimension)
-    setAccountData(account, 'last_seen', getRealTime().timestamp)
+    local hunger = getElementData(source, 'hunger')
+    local head_hp = getElementData(source, 'head_hp')
+    local torso_hp = getElementData(source, 'torso_hp')
+    local leftarm_hp = getElementData(source, 'leftarm_hp')
+    local rightarm_hp = getElementData(source, 'rightarm_hp')
+    local leftleg_hp = getElementData(source, 'leftleg_hp')
+    local rightleg_hp = getElementData(source, 'rightleg_hp')
+    local lowerbody_hp = getElementData(source, 'lowerbody_hp')
+    local last_seen = getRealTime().timestamp
+    return dbExec(db, "UPDATE characters SET skin=?, money=?, x=?, y=?, z=?, interior=?, dimension=?, hunger=?, head_hp=?, torso_hp=?, leftarm_hp=?, rightarm_hp=?, leftleg_hp=?, rightleg_hp=?, lowerbody_hp=?, last_seen=? WHERE character_name =?", skin, money, x, y, z, interior, dimension, hunger, head_hp, torso_hp, leftarm_hp, rightarm_hp, leftleg_hp, rightleg_hp, lowerbody_hp, last_seen, character_name)
 end)
+
 
 -- logout
 addCommandHandler('accountLogout', function (player)

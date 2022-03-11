@@ -16,6 +16,7 @@
         <acl name="SuperModerator"></acl>
         <acl name="Admin"></acl>
         <acl name="RPC"></acl>
+        <object name="user.TestUser"></object>
     </group>
     <group name="Console">
         <acl name="Moderator"></acl>

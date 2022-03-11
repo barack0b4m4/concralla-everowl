@@ -14,8 +14,12 @@
 	<export function="isElementInvulnerable" type="client" />
 	<export function="isElementInvulnerable" type="server" />
     <script src="authentication.lua" type='server'/>
+    <script src="character_create_s.lua" type="server"/>
     <script src="login_c.lua" type="client"/>
     <export function="getPlayerFromAlias" type="server"/>
     <script src="register_c.lua" type="client"/>
     <script src="helpers_c.lua" type="client"/>
+    <script src="character_creation_c.lua" type="client"/>
+    <script src="hunger_s.lua" type="server"/>
+    <export function="getWindowPosition" type="client"/>
 </meta>
