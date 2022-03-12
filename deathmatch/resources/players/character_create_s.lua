@@ -13,15 +13,28 @@ local function getCharacters()
         return charResult
 end
 
-function loadAllVehicles(queryHandle)
-    local results = dbPoll(queryHandle, 0)
+--function loadAllVehicles(queryHandle)
+  --  local results = dbPoll(queryHandle, 0)
 
-    for index, vehicle in pairs(results) do
-        local vehicleObject = createVehicle(vehicle.model, vehicle.x, vehicle.y, vehicle.z, vehicle.rotation_x, vehicle.rotation_y, vehicle.rotation_z)
+    --for index, vehicle in pairs(results) do
+      --  local vehicleObject = createVehicle(vehicle.model, vehicle.x, vehicle.y, vehicle.z, vehicle.rotation_x, vehicle.rotation_y, vehicle.rotation_z)
 
-        setElementData(vehicleObject, "id", vehicle.id)
-    end
+        --setElementData(vehicleObject, "id", vehicle.id)
+    --end
+--end
+
+local function initCharInventory(characterName)
+    local player = source
+    local charName = getPlayerName(player)
+    local results = dbPoll ( dbQuery  (db, "SELECT * FROM inventories WHERE character_name =?", charName), -1 )
+    iprint(results)
+    setElementData(player, 'inventory', results)
+    local diditwork = getElementData(player, 'inventory')
+    iprint(diditwork)
 end
+    
+addEvent('initInventory', true)
+addEventHandler('initInventory', root, initCharInventory)
 
 local function spawnChar(characterName)
         -- create character
@@ -49,11 +62,12 @@ local function spawnChar(characterName)
                 setElementData (player, "extraHealth:invulnerable", true)
                 setElementDimension(player, characters.dimension)
                 setCameraTarget(player, player)
+                triggerEvent('initInventory', player)
                 triggerClientEvent(player, 'character-menu:close', player)
-        end
+                outputChatBox("Welcome to Thug Life Gangsta World RP", player, 100, 255, 100)
+            end
         else outputChatBox("There is no character with this name", player, 255, 100, 100)
-        
-    end
+        end
 end
 
 addEvent('character-menu:getcharacters', true)

@@ -8,15 +8,24 @@ addCommandHandler('gethunger', getHunger)
 
 function increaseHunger(player)
     local currentHunger = getElementData(player, 'hunger')
-    if currentHunger <= 0 then
+    if currentHunger < 0 then
         setElementData(player, 'hunger', 0)
-    else
+    elseif currentHunger >= 0 then
     setElementData(player, 'hunger', currentHunger + 20)
     end
 end
 
+function increaseplayerHunger(source, commandName, playerName)
+    local player = getPlayerFromName(playerName)
+    local currentHunger = getElementData(player, 'hunger')
+    if currentHunger < 0 then
+        setElementData(player, 'hunger', 0)
+    elseif currentHunger >= 0 then
+    setElementData(player, 'hunger', currentHunger + 20)
+    end
+end
 
-addCommandHandler('hungry', increaseHunger)
+addCommandHandler('hungry', increaseplayerHunger)
 
 function execHunger()
     setTimer(execHunger, 36000000, 1)
