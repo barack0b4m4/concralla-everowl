@@ -42,18 +42,6 @@ addEventHandler('itemcreator:pagetwo', root, itemcreatorTypes)
 
 addCommandHandler('itemcreator', launchItemCreator)
 
-local function checkInventory(source, commandName, slot_number)
-    local slot = getElementData(source, slot_number)
-    iprint(slot)
-        if slot == false or slot == 0
-        then 
-            return outputChatBox('There is nothing in this slot', source, 255, 100, 100)
-        else
-            local results = dbPoll ( dbQuery  (db, "SELECT item_name FROM items WHERE item_id =?", slot), -1 )
-            outputChatBox('This slot has a '.. results[1].item_name ..' in it', source, 255, 255, 255)
-        end
-end
-
 local function checkInv(source)
     local inv = getElementData(source, 'inventory')
     for index, item_id in pairs(inv) do
