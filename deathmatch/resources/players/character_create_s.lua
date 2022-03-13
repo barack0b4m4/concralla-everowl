@@ -27,10 +27,7 @@ local function initCharInventory(characterName)
     local player = source
     local charName = getPlayerName(player)
     local results = dbPoll ( dbQuery  (db, "SELECT * FROM inventories WHERE character_name =?", charName), -1 )
-    iprint(results)
     setElementData(player, 'inventory', results)
-    local diditwork = getElementData(player, 'inventory')
-    iprint(diditwork)
 end
     
 addEvent('initInventory', true)
@@ -100,6 +97,7 @@ local function createCharacter(characterName, age, gender, skin)
             setElementData(player, 'leftleg_hp', 100)
             setElementData(player, 'rightleg_hp', 100)
             setElementData(player, 'lowerbody_hp', 100)
+            setElementData (player, "extraHealth:invulnerable", true)
             setElementDimension(player, SPAWN_DIMENSION)
             setCameraTarget(player, player)
             triggerClientEvent(player, 'character-menu:close', player)
