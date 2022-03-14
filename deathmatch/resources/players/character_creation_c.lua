@@ -2,7 +2,10 @@ local window
 local CAMERA_POS_X, CAMERA_POS_Y, CAMERA_POS_Z = 1480, -1710, 20
 local CAMERA_LOOK_X, CAMERA_LOOK_Y, CAMERA_LOOK_Z = 1480, -1810, 20
 
-
+function mouseKey() 
+    showCursor(not isCursorShowing()) -- Toggles between true and false 
+ end 
+ bindKey("m", "down", mouseKey) 
 
 addEvent('character-menu:open', true)
 addEventHandler('character-menu:open', root, function ()

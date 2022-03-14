@@ -32,7 +32,7 @@ end
 
 addEvent( "damage:damageReport" , true )
 
-function reportDamageType ( weapon, bodypart, loss ) --when a player is damaged
+function reportDamageType ( source, weapon, bodypart, loss ) --when a source is damaged
 	-- bullet wounds
 	local bulletType = (22 or 23 or 24 or 25 or 26 or 27 or 28 or 29 or 32 or 30 or 31 or 33 or 34 or 38)
 
@@ -116,4 +116,4 @@ function reportDamageType ( weapon, bodypart, loss ) --when a player is damaged
 	end
 end
 
-addEventHandler ( "damage:damageReport", source, reportDamageType ) --add an event handler for the onPlayerDamage event
+addEventHandler("damage:damageReport", root, reportDamageType) --add an event handler for the onPlayerDamage event

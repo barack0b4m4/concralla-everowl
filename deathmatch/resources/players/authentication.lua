@@ -6,7 +6,7 @@ local SPAWN_INTERIOR, SPAWN_DIMENSION = 0, 0
 
 local function makeDB () 
     dbExec(db, "CREATE TABLE IF NOT EXISTS characters (character_id INTEGER PRIMARY KEY AUTOINCREMENT, account TEXT, character_name TEXT, age INT, gender TEXT, skin INT, fingerprint TEXT, money INT, hunger INT, strength INT, cunning INT, intelligence INT, head_hp INT, torso_hp INT, leftarm_hp INT, rightarm_hp INT, leftleg_hp INT, rightleg_hp INT, lowerbody_hp INT, x INT, y INT, z INT, interior INT, dimension INT, last_seen INT)")
-    dbExec(db, "CREATE TABLE IF NOT EXISTS inventories (character_name TEXT, item_id INT, quantity INT)")
+    dbExec(db, "CREATE TABLE IF NOT EXISTS inventories (character_name TEXT, item_id INT)")
     dbExec(db, "CREATE TABLE IF NOT EXISTS charskills (character_name TEXT, skill_id INT, level INT)")
 end
 
@@ -119,3 +119,4 @@ end)
 addCommandHandler('accountLogout', function (player)
     logOut(player)
 end)
+
