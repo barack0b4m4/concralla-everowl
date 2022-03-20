@@ -475,11 +475,9 @@ end
 
 addEventHandler ( "onVehicleStartEnter", getRootElement(), function( player, seat, jacked) 
 	if getElementType(player) == "player" then
-		outputChatBox(string.format( "[NPC]: %s start to enter veh %d",getPlayerName(player),getElementModel( source )))
 	end
 end ) --add an event handler for onVehicleStartEnter
 addEventHandler ( "onVehicleEnter", getRootElement(), function( player, seat, jacked) 
-	if getElementType(player) == "player" then
-		outputChatBox(string.format( "[NPC]: %s enter to veh %d",getPlayerName(player),getElementModel( source )))
+	if getElementType(player) == "player" then	
 	end
 end )

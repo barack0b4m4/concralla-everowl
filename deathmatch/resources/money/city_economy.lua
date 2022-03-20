@@ -54,7 +54,7 @@ end
 
 local function whatsGDP()
     local currentGDP = getCityGDP('los_santos')
-    iprint(currentGDP[1].citygdp)
+    outputChatBox('$'.. currentGDP[1].citygdp ..'', source, 255, 255, 255)
 end
 
 addCommandHandler('whatsgdp', whatsGDP)

@@ -1,0 +1,59 @@
+<meta>
+<info name="playerhud" author="emerhoja" version="1.1" type="script" />
+	<script src="c_dxstat.lua" type="client"/>
+	<script src="s_inv.lua" type="server"/>
+<file src="fonts/font.ttf" />
+<file src="fonts/cash.ttf" />
+<file src="fonts/ammo.ttf" />
+<file src="files/clock.png" />
+<file src="files/nokta.png" />
+<file src="files/healt.png" />
+<file src="files/armor.png" />
+<file src="files/oxygen.png" />
+<file src="files/dolar.png" />
+<file src="files/ammo.png" />
+<file src="files/cerce.png" />
+<file src="icons/0.png"/>
+	<file src="icons/1.png"/>
+	<file src="icons/2.png"/>
+	<file src="icons/3.png"/>
+	<file src="icons/4.png"/>
+	<file src="icons/5.png"/>
+	<file src="icons/6.png"/>
+	<file src="icons/7.png"/>
+	<file src="icons/8.png"/>
+	<file src="icons/9.png"/>
+	<file src="icons/10.png"/>
+	<file src="icons/11.png"/>
+	<file src="icons/12.png"/>
+	<file src="icons/14.png"/>
+	<file src="icons/15.png"/>
+	<file src="icons/16.png"/>
+	<file src="icons/17.png"/>
+	<file src="icons/18.png"/>
+	<file src="icons/22.png"/>
+	<file src="icons/23.png"/>
+	<file src="icons/24.png"/>
+	<file src="icons/25.png"/>
+	<file src="icons/26.png"/>
+	<file src="icons/27.png"/>
+	<file src="icons/28.png"/>
+	<file src="icons/29.png"/>
+	<file src="icons/30.png"/>
+	<file src="icons/31.png"/>
+	<file src="icons/32.png"/>
+	<file src="icons/33.png"/>
+	<file src="icons/34.png"/>
+	<file src="icons/35.png"/>
+	<file src="icons/36.png"/>
+	<file src="icons/37.png"/>
+	<file src="icons/38.png"/>
+	<file src="icons/39.png"/>
+	<file src="icons/40.png"/>
+	<file src="icons/41.png"/>
+	<file src="icons/42.png"/>
+	<file src="icons/43.png"/>
+	<file src="icons/44.png"/>
+	<file src="icons/45.png"/>
+	<file src="icons/46.png"/>
+</meta>

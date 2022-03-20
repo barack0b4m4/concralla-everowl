@@ -6,6 +6,14 @@ end
 
 addCommandHandler('gethunger', getHunger)
 
+local function myHunger(source, commandName)
+    local player = source
+    local currentHunger = getElementData(player, 'hunger')
+        return outputChatBox('You have a hunger of '.. tostring(currentHunger) ..'', source, 255, 255, 255)
+end
+
+addCommandHandler('hunger', myHunger)
+
 function increaseHunger(player)
     local currentHunger = getElementData(player, 'hunger')
     if currentHunger < 0 then

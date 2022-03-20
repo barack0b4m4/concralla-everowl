@@ -23,6 +23,7 @@ local function itemcreatorTypes(item_type)
     elseif tostring(item_type) == "consumable" then
         triggerClientEvent(source, 'itemcreator:consumable', source)
     else
+        outputChatBox('This is not a valid item type', source, 255, 0, 0)
     end
 end
 
@@ -46,8 +47,10 @@ local function checkInv(source)
     local inv = getElementData(source, 'inventory')
     for index, item_id in pairs(inv) do
         for k, v in pairs(item_id) do
+            iprint(item_id)
             local item_name = dbPoll ( dbQuery  (db, "SELECT item_name FROM items WHERE item_id =?", v), -1 )
-            outputChatBox('You have '.. item_name[1].item_name ..' in your inventory', player, 255, 255, 255)
+            outputChatBox('You have '.. quantity ..' '.. item_name[1].item_name ..' in your inventory', player, 255, 255, 255)
+
         end
     end
 end
@@ -68,18 +71,12 @@ local function useItem(source, commandName, itemName)
     local currentHunger = getElementData(source, 'hunger')
     for index, item_id in pairs(inv) do
         for k, v in pairs(item_id) do
-			iprint(inv)
             local item_name = dbPoll ( dbQuery  (db, "SELECT item_name FROM items WHERE item_id =?", v), -1 )
             local itemType = dbPoll ( dbQuery  (db, "SELECT item_type FROM items WHERE item_name =?", itemName), -1 ) 
-            local theItem = item_name[1]
-            if itemName == item_name[1].item_name then
+            local theItem = item_name[1].item_name
+            iprint(itemType[1].item_type)
+            if itemName == theItem then
             	if itemType[1].item_type == 'food' then
-					local itemToRemove = dbPoll ( dbQuery  (db, "SELECT item_id FROM items WHERE item_name =?", itemName), -1 )
-					iprint(itemToRemove[1].item_id)
-					while v == itemToRemove[1].item_id do 
-						local daIndex = indexOf(inv, itemToRemove[1].item_id)
-						iprint(daIndex)
-						break end
                 	if currentHunger > 0 then 
                     	local effects = dbPoll ( dbQuery  (db, "SELECT attribute_1 FROM items WHERE item_name =?", itemName), -1 )
                     	setElementData(source,'hunger', currentHunger - effects[1].attribute_1)
@@ -87,24 +84,24 @@ local function useItem(source, commandName, itemName)
                 	elseif currentHunger <= 0 then
                     	outputChatBox('You are not hungry', source, 255, 100, 100)
                 	end
-            	elseif itemType[1].item_type == 'gun' then
-                    	local wepID = dbPoll ( dbQuery  (db, "SELECT attribute_1 FROM items WHERE item_name =?", itemName), -1 )
-                    	local wepRange = dbPoll ( dbQuery  (db, "SELECT attribute_2 FROM items WHERE item_name =?", itemName), -1 )
-                    	local wepAcc = dbPoll ( dbQuery  (db, "SELECT attribute_3 FROM items WHERE item_name =?", itemName), -1 )
-                    	local wepDmg = dbPoll ( dbQuery  (db, "SELECT attribute_4 FROM items WHERE item_name =?", itemName), -1 )
-                    	local wepAmmo = dbPoll ( dbQuery  (db, "SELECT attribute_5 FROM items WHERE item_name =?", itemName), -1 )
-                    	local wepSpeed = dbPoll ( dbQuery  (db, "SELECT attribute_6 FROM items WHERE item_name =?", itemName), -1 )
-                    	giveWeapon(source, wepID[1].attribute_1, wepAmmo[1].attribute_5)
-                    	setWeaponProperty(wepID[1].attribute_1, 'poor', 'target_range', wepRange[1].attribute_2)
-                    	setWeaponProperty(wepID[1].attribute_1, 'poor', 'accuracy', wepAcc[1].attribute_3)
-                    	setWeaponProperty(wepID[1].attribute_1, 'poor', 'damage', wepDmg[1].attribute_4)
-                    	setWeaponProperty(wepID[1].attribute_1, 'poor', 'maximum_clip_ammo', wepAmmo[1].attribute_5)
-                    	setWeaponProperty(wepID[1].attribute_1, 'poor', 'move_speed', wepSpeed[1].attribute_6)
-            	end
-			else outputChatBox('You have no item by that name', source, 255, 100, 100)
-			end
+                elseif itemType[1].item_type == 'gun' then 
+                    local wepID = dbPoll ( dbQuery  (db, "SELECT attribute_1 FROM items WHERE item_name =?", itemName), -1 )
+                    local wepRange = dbPoll ( dbQuery  (db, "SELECT attribute_2 FROM items WHERE item_name =?", itemName), -1 )
+                    local wepAcc = dbPoll ( dbQuery  (db, "SELECT attribute_3 FROM items WHERE item_name =?", itemName), -1 )
+                    local wepDmg = dbPoll ( dbQuery  (db, "SELECT attribute_4 FROM items WHERE item_name =?", itemName), -1 )
+                    local wepAmmo = dbPoll ( dbQuery  (db, "SELECT attribute_5 FROM items WHERE item_name =?", itemName), -1 )
+                    local wepSpeed = dbPoll ( dbQuery  (db, "SELECT attribute_6 FROM items WHERE item_name =?", itemName), -1 )
+                    giveWeapon(source, wepID[1].attribute_1, wepAmmo[1].attribute_5)
+                    setWeaponProperty(wepID[1].attribute_1, 'poor', 'target_range', wepRange[1].attribute_2)
+                    setWeaponProperty(wepID[1].attribute_1, 'poor', 'accuracy', wepAcc[1].attribute_3)
+                    setWeaponProperty(wepID[1].attribute_1, 'poor', 'damage', wepDmg[1].attribute_4)
+                    setWeaponProperty(wepID[1].attribute_1, 'poor', 'maximum_clip_ammo', wepAmmo[1].attribute_5)
+                    setWeaponProperty(wepID[1].attribute_1, 'poor', 'move_speed', wepSpeed[1].attribute_6) 
         break end
     break end
+                end
+			end
+
 end
 
 local function giveItem(source, commandName, itemName)

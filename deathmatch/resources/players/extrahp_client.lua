@@ -36,7 +36,8 @@ addEventHandler ( "onClientPlayerStealthKill", root,
 
 addEventHandler ( "onClientPlayerDamage", localPlayer,
 	function ( attacker, weapon, bodypart, loss )
-		triggerServerEvent('damage:damageReport', root, weapon, bodypart, loss)
+		local player = getPlayerFromName(localPlayer)
+		triggerServerEvent('damage:damageReport', player, weapon, bodypart, loss)
 		iprint(weapon)
 		if isElementInvulnerable ( source ) then
 			cancelEvent ( )

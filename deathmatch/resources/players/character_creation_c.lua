@@ -70,7 +70,7 @@ addEventHandler('charcreate:open', root, function()
     guiWindowSetMovable(window, false)
     guiWindowSetSizable(window, false)
     
-    local characterNameLabel = guiCreateLabel(15, 30, width - 30, 20, 'Name', false, window)
+    local characterNameLabel = guiCreateLabel(15, 30, width - 30, 20, 'Name (Firstname_Lastname)', false, window)
     local characterNameInput = guiCreateEdit(10, 50, width - 20, 30, '', false, window)
 
     local ageLabel = guiCreateLabel(15, 90, width - 30, 20, 'Age', false, window)
@@ -79,7 +79,7 @@ addEventHandler('charcreate:open', root, function()
     local genderLabel = guiCreateLabel(15, 150, width - 30, 20, 'Gender', false, window)
     local genderInput = guiCreateEdit(10, 170, width - 20, 30, '', false, window)
  
-    local skinLabel = guiCreateLabel(15, 210, width - 30, 20, 'Skin ID', false, window)
+    local skinLabel = guiCreateLabel(15, 210, width - 30, 20, 'Skin ID (0-312)', false, window)
     local skinInput = guiCreateEdit(10, 230, width - 20, 30, '', false, window)
 
 

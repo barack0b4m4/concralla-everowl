@@ -216,7 +216,7 @@ function controlForward(npc)
 		setPedControlState (npc,"handbrake", false )
 
 	else
-		outputChatBox("[AI]: s")
+		--outputChatBox("[AI]: s")
 		setPedControlState (npc'accelerate', false)
 		--setControlState ("brake_reverse", true )
 		--setControlState ("handbrake", true )

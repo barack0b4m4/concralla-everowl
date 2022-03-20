@@ -26,7 +26,7 @@ end
 local function initCharInventory(characterName)
     local player = source
     local charName = getPlayerName(player)
-    local results = dbPoll ( dbQuery  (db, "SELECT item_id FROM inventories WHERE character_name =?", charName), -1 )
+    local results = dbPoll ( dbQuery  (db, "SELECT item_id, quantity FROM inventories WHERE character_name =?", charName), -1 )
     setElementData(player, 'inventory', results)
     local checkResults = getElementData(player, 'inventory')
 end
